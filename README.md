@@ -152,7 +152,7 @@ The full schema is managed via SQL migrations (e.g., Flyway or Liquibase) and in
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/your-org/marketwave.git
+   git clone https://github.com/Market-Wave/Backend.git
    cd marketwave
    ```
 
