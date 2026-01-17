@@ -1,6 +1,10 @@
 package org.motionstack.marketwave.advertisementservice.dto;
 
 import org.motionstack.marketwave.advertisementservice.model.*;
+import org.motionstack.marketwave.advertisementservice.repository.VehicleBrandRepository;
+import org.motionstack.marketwave.advertisementservice.repository.VehicleModelRepository;
+import org.motionstack.marketwave.advertisementservice.repository.BodyTypeRepository;
+import org.motionstack.marketwave.advertisementservice.repository.AdCategoryRepository;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +12,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DtoMapper {
+
+    private final VehicleBrandRepository vehicleBrandRepository;
+    private final VehicleModelRepository vehicleModelRepository;
+    private final BodyTypeRepository bodyTypeRepository;
+    private final AdCategoryRepository adCategoryRepository;
+
+    public DtoMapper(VehicleBrandRepository vehicleBrandRepository,
+                    VehicleModelRepository vehicleModelRepository,
+                    BodyTypeRepository bodyTypeRepository,
+                    AdCategoryRepository adCategoryRepository) {
+        this.vehicleBrandRepository = vehicleBrandRepository;
+        this.vehicleModelRepository = vehicleModelRepository;
+        this.bodyTypeRepository = bodyTypeRepository;
+        this.adCategoryRepository = adCategoryRepository;
+    }
 
     // VehicleAd mappings
     public VehicleAd toEntity(VehicleAdRequest request) {
@@ -49,6 +68,25 @@ public class DtoMapper {
         response.setModelId(entity.getModelId());
         response.setBodyTypeId(entity.getBodyTypeId());
         response.setCategoryId(entity.getCategoryId());
+        
+        // Fetch and set nested objects
+        if (entity.getBrandId() != null) {
+            vehicleBrandRepository.findById(entity.getBrandId())
+                .ifPresent(brand -> response.setBrand(toResponse(brand)));
+        }
+        if (entity.getModelId() != null) {
+            vehicleModelRepository.findById(entity.getModelId())
+                .ifPresent(model -> response.setModel(toResponse(model)));
+        }
+        if (entity.getBodyTypeId() != null) {
+            bodyTypeRepository.findById(entity.getBodyTypeId())
+                .ifPresent(bodyType -> response.setBodyType(toResponse(bodyType)));
+        }
+        if (entity.getCategoryId() != null) {
+            adCategoryRepository.findById(entity.getCategoryId())
+                .ifPresent(category -> response.setCategory(toResponse(category)));
+        }
+        
         response.setYear(entity.getYear());
         response.setMileage(entity.getMileage());
         response.setFuelType(entity.getFuelType());

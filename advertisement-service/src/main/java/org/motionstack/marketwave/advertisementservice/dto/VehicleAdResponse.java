@@ -37,6 +37,18 @@ public class VehicleAdResponse {
     @Schema(description = "Category ID", example = "1")
     private Long categoryId;
 
+    @Schema(description = "Vehicle brand information")
+    private VehicleBrandResponse brand;
+
+    @Schema(description = "Vehicle model information")
+    private VehicleModelResponse model;
+
+    @Schema(description = "Body type information")
+    private BodyTypeResponse bodyType;
+
+    @Schema(description = "Category information")
+    private AdCategoryResponse category;
+
     @Schema(description = "Manufacturing year", example = "2020")
     private Integer year;
 

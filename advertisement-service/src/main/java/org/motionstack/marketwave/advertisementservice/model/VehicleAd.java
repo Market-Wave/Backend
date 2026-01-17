@@ -33,7 +33,7 @@ public class VehicleAd {
     private Long bodyTypeId;
     private Long categoryId;
 
-    @Column(name = "`year`", nullable = false)
+    @Column(name = "vehicle_year", nullable = false)
     private Integer year;
 
     @Column(nullable = false)

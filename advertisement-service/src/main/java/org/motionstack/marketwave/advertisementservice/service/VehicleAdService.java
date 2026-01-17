@@ -2,6 +2,10 @@ package org.motionstack.marketwave.advertisementservice.service;
 
 import org.motionstack.marketwave.advertisementservice.model.VehicleAd;
 import org.motionstack.marketwave.advertisementservice.repository.VehicleAdRepository;
+import org.motionstack.marketwave.advertisementservice.repository.VehicleBrandRepository;
+import org.motionstack.marketwave.advertisementservice.repository.VehicleModelRepository;
+import org.motionstack.marketwave.advertisementservice.repository.BodyTypeRepository;
+import org.motionstack.marketwave.advertisementservice.repository.AdCategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +23,21 @@ import java.util.UUID;
 public class VehicleAdService {
 
     private final VehicleAdRepository vehicleAdRepository;
+    private final VehicleBrandRepository vehicleBrandRepository;
+    private final VehicleModelRepository vehicleModelRepository;
+    private final BodyTypeRepository bodyTypeRepository;
+    private final AdCategoryRepository adCategoryRepository;
 
-    public VehicleAdService(VehicleAdRepository vehicleAdRepository) {
+    public VehicleAdService(VehicleAdRepository vehicleAdRepository,
+                           VehicleBrandRepository vehicleBrandRepository,
+                           VehicleModelRepository vehicleModelRepository,
+                           BodyTypeRepository bodyTypeRepository,
+                           AdCategoryRepository adCategoryRepository) {
         this.vehicleAdRepository = vehicleAdRepository;
+        this.vehicleBrandRepository = vehicleBrandRepository;
+        this.vehicleModelRepository = vehicleModelRepository;
+        this.bodyTypeRepository = bodyTypeRepository;
+        this.adCategoryRepository = adCategoryRepository;
     }
 
     /**
@@ -99,6 +115,19 @@ public class VehicleAdService {
     public List<VehicleAd> getAdsByOwner(UUID ownerId) {
         return vehicleAdRepository.findAll().stream()
                 .filter(ad -> ad.getOwnerId().equals(ownerId))
+                .toList();
+    }
+
+    /**
+     * Find all ads by store ID.
+     *
+     * @param storeId the store's ID
+     * @return list of vehicle ads belonging to the store
+     */
+    @Transactional(readOnly = true)
+    public List<VehicleAd> getAdsByStore(Long storeId) {
+        return vehicleAdRepository.findAll().stream()
+                .filter(ad -> ad.getStoreId() != null && ad.getStoreId().equals(storeId))
                 .toList();
     }
 

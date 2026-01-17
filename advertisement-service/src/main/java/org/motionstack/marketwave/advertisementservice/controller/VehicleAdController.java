@@ -96,6 +96,22 @@ public class VehicleAdController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping("/store/{storeId}")
+    @Operation(summary = "Get ads by store", 
+               description = "Retrieves all vehicle advertisements for a specific store")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "List of store's advertisements",
+                    content = @Content(schema = @Schema(implementation = VehicleAdResponse.class)))
+    })
+    public ResponseEntity<List<VehicleAdResponse>> getAdsByStore(
+            @Parameter(description = "Store ID", example = "1")
+            @PathVariable Long storeId) {
+        List<VehicleAdResponse> responses = vehicleAdService.getAdsByStore(storeId).stream()
+                .map(dtoMapper::toResponse)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
+    }
+
     @PutMapping("/{id}")
     @Operation(summary = "Update vehicle ad", 
                description = "Updates an existing vehicle advertisement")
