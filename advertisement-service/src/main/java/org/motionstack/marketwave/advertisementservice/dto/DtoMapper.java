@@ -5,6 +5,7 @@ import org.motionstack.marketwave.advertisementservice.repository.VehicleBrandRe
 import org.motionstack.marketwave.advertisementservice.repository.VehicleModelRepository;
 import org.motionstack.marketwave.advertisementservice.repository.BodyTypeRepository;
 import org.motionstack.marketwave.advertisementservice.repository.AdCategoryRepository;
+import org.motionstack.marketwave.advertisementservice.repository.StoreRepository;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,15 +18,18 @@ public class DtoMapper {
     private final VehicleModelRepository vehicleModelRepository;
     private final BodyTypeRepository bodyTypeRepository;
     private final AdCategoryRepository adCategoryRepository;
+    private final StoreRepository storeRepository;
 
     public DtoMapper(VehicleBrandRepository vehicleBrandRepository,
                     VehicleModelRepository vehicleModelRepository,
                     BodyTypeRepository bodyTypeRepository,
-                    AdCategoryRepository adCategoryRepository) {
+                    AdCategoryRepository adCategoryRepository,
+                    StoreRepository storeRepository) {
         this.vehicleBrandRepository = vehicleBrandRepository;
         this.vehicleModelRepository = vehicleModelRepository;
         this.bodyTypeRepository = bodyTypeRepository;
         this.adCategoryRepository = adCategoryRepository;
+        this.storeRepository = storeRepository;
     }
 
     // VehicleAd mappings
@@ -85,6 +89,10 @@ public class DtoMapper {
         if (entity.getCategoryId() != null) {
             adCategoryRepository.findById(entity.getCategoryId())
                 .ifPresent(category -> response.setCategory(toResponse(category)));
+        }
+        if (entity.getStoreId() != null) {
+            storeRepository.findById(entity.getStoreId())
+                .ifPresent(store -> response.setStore(toResponse(store)));
         }
         
         response.setYear(entity.getYear());

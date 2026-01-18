@@ -252,7 +252,7 @@ public class DataLoader {
             ad1.setMileage(15000);
             ad1.setFuelType("GASOLINE");
             ad1.setTransmission("AUTOMATIC");
-            ad1.setCondition("EXCELLENT");
+            ad1.setCondition("Excellent");
             ad1.setPrice(new BigDecimal("28500.00"));
             ad1.setCurrency("USD");
             ad1.setCountry("US");
@@ -279,7 +279,7 @@ public class DataLoader {
             ad2.setMileage(22000);
             ad2.setFuelType("GASOLINE");
             ad2.setTransmission("AUTOMATIC");
-            ad2.setCondition("EXCELLENT");
+            ad2.setCondition("Excellent");
             ad2.setPrice(new BigDecimal("65000.00"));
             ad2.setCurrency("USD");
             ad2.setCountry("US");
@@ -306,7 +306,7 @@ public class DataLoader {
             ad3.setMileage(35000);
             ad3.setFuelType("GASOLINE");
             ad3.setTransmission("MANUAL");
-            ad3.setCondition("GOOD");
+            ad3.setCondition("Good");
             ad3.setPrice(new BigDecimal("22000.00"));
             ad3.setCurrency("USD");
             ad3.setCountry("US");
@@ -333,7 +333,7 @@ public class DataLoader {
             ad4.setMileage(5000);
             ad4.setFuelType("ELECTRIC");
             ad4.setTransmission("AUTOMATIC");
-            ad4.setCondition("EXCELLENT");
+            ad4.setCondition("Excellent");
             ad4.setPrice(new BigDecimal("48000.00"));
             ad4.setCurrency("USD");
             ad4.setCountry("US");
@@ -360,7 +360,7 @@ public class DataLoader {
             ad5.setMileage(18000);
             ad5.setFuelType("GASOLINE");
             ad5.setTransmission("AUTOMATIC");
-            ad5.setCondition("EXCELLENT");
+            ad5.setCondition("Excellent");
             ad5.setPrice(new BigDecimal("58000.00"));
             ad5.setCurrency("USD");
             ad5.setCountry("US");

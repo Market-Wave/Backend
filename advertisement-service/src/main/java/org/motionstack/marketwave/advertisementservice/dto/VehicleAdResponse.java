@@ -49,6 +49,9 @@ public class VehicleAdResponse {
     @Schema(description = "Category information")
     private AdCategoryResponse category;
 
+    @Schema(description = "Store information if posted by a dealership")
+    private StoreResponse store;
+
     @Schema(description = "Manufacturing year", example = "2020")
     private Integer year;
 
