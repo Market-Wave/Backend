@@ -62,3 +62,67 @@ VALUES
 ('550e8400-e29b-41d4-a716-446655440000', 1, '2020 Honda CR-V EX', 'Reliable family SUV with spacious interior. Perfect for daily driving and weekend adventures.', 2, 6, 2, 2, 2020, 38000, 'Gasoline', 'Automatic', 'Excellent', 22800.00, 'USD', 'US', 'New York', 40.7128, -74.0060, '456 Broadway, New York, NY', 'ACTIVE'),
 
 ('550e8400-e29b-41d4-a716-446655440000', 1, '2017 Ford Mustang GT', 'Iconic American muscle car. Powerful V8 engine with manual transmission. Collector quality.', 3, 9, 5, 1, 2017, 55000, 'Gasoline', 'Manual', 'Good', 29500.00, 'USD', 'US', 'New York', 40.7128, -74.0060, '456 Broadway, New York, NY', 'ACTIVE');
+
+-- Insert store media for City Motors
+INSERT INTO store_media (store_id, url, media_type, media_view, sort_order)
+VALUES
+(1, 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1200', 'IMAGE', 'LOGO', 0),
+(1, 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200', 'IMAGE', 'BANNER', 1),
+(1, 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200', 'IMAGE', 'STOREFRONT', 2);
+
+-- Insert vehicle media for the ads
+-- 2020 Toyota Corolla
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(1, 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(1, 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200', 'IMAGE', 'INTERIOR', 1),
+(1, 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200', 'IMAGE', 'DASHBOARD', 2);
+
+-- 2019 Honda Civic
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(2, 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(2, 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=1200', 'IMAGE', 'SIDE_VIEW', 1),
+(2, 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=1200', 'IMAGE', 'INTERIOR', 2);
+
+-- 2021 Toyota RAV4
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(3, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(3, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200', 'IMAGE', 'REAR_VIEW', 1),
+(3, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200', 'IMAGE', 'INTERIOR', 2);
+
+-- 2018 Ford F-150
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(4, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(4, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200', 'IMAGE', 'BED_VIEW', 1),
+(4, 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200', 'IMAGE', 'INTERIOR', 2);
+
+-- 2022 Chevrolet Equinox
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(5, 'https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(5, 'https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1200', 'IMAGE', 'SIDE_VIEW', 1),
+(5, 'https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1200', 'IMAGE', 'INTERIOR', 2);
+
+-- 2019 BMW 3 Series
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(6, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(6, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200', 'IMAGE', 'INTERIOR', 1),
+(6, 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200', 'IMAGE', 'DASHBOARD', 2);
+
+-- 2020 Honda CR-V
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(7, 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(7, 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200', 'IMAGE', 'REAR_VIEW', 1),
+(7, 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200', 'IMAGE', 'INTERIOR', 2);
+
+-- 2017 Ford Mustang
+INSERT INTO vehicle_media (ad_id, url, media_type, media_view, sort_order)
+VALUES
+(8, 'https://images.unsplash.com/photo-1584345604476-8ec5f09e8b85?w=1200', 'IMAGE', 'EXTERIOR', 0),
+(8, 'https://images.unsplash.com/photo-1584345604476-8ec5f09e8b85?w=1200', 'IMAGE', 'SIDE_VIEW', 1),
+(8, 'https://images.unsplash.com/photo-1584345604476-8ec5f09e8b85?w=1200', 'IMAGE', 'INTERIOR', 2);
