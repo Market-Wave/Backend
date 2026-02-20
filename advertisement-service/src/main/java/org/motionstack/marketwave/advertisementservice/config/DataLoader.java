@@ -50,7 +50,7 @@ public class DataLoader {
             String[][] toyotaModels = {{"Corolla"}, {"Camry"}, {"RAV4"}, {"Prius"}, {"Highlander"}};
             for (String[] model : toyotaModels) {
                 VehicleModel vm = new VehicleModel();
-                vm.setBrandId(brands.get(0).getId());
+                vm.setBrandId(brands.getFirst().getId());
                 vm.setName(model[0]);
                 models.add(vm);
             }
@@ -239,12 +239,12 @@ public class DataLoader {
             // Ad 1: Toyota Camry
             VehicleAd ad1 = new VehicleAd();
             ad1.setOwnerId(owner1);
-            ad1.setStoreId(stores.get(0).getId());
+            ad1.setStoreId(stores.getFirst().getId());
             ad1.setTitle("2023 Toyota Camry XLE - Low Mileage, Excellent Condition");
             ad1.setDescription("Beautiful 2023 Toyota Camry XLE with only 15,000 miles. One owner, never been in an accident. Features include leather seats, sunroof, navigation system, and advanced safety features.");
-            ad1.setBrandId(brands.get(0).getId());
+            ad1.setBrandId(brands.getFirst().getId());
             ad1.setModelId(models.get(1).getId());
-            ad1.setBodyTypeId(bodyTypes.get(0).getId());
+            ad1.setBodyTypeId(bodyTypes.getFirst().getId());
             ad1.setCategoryId(categories.get(1).getId());
             ad1.setYear(2023);
             ad1.setMileage(15000);
@@ -266,7 +266,7 @@ public class DataLoader {
             // Ad 2: BMW X5
             VehicleAd ad2 = new VehicleAd();
             ad2.setOwnerId(owner1);
-            ad2.setStoreId(stores.get(0).getId());
+            ad2.setStoreId(stores.getFirst().getId());
             ad2.setTitle("2022 BMW X5 M Sport - Luxury SUV");
             ad2.setDescription("Stunning BMW X5 with M Sport package. Loaded with premium features including panoramic roof, Harman Kardon sound system, adaptive cruise control, and much more.");
             ad2.setBrandId(brands.get(2).getId());
@@ -298,7 +298,7 @@ public class DataLoader {
             ad3.setDescription("Reliable and fuel-efficient Honda Civic Sport. Perfect for daily commuting. Well maintained with full service history.");
             ad3.setBrandId(brands.get(1).getId());
             ad3.setModelId(models.get(5).getId());
-            ad3.setBodyTypeId(bodyTypes.get(0).getId());
+            ad3.setBodyTypeId(bodyTypes.getFirst().getId());
             ad3.setCategoryId(categories.get(1).getId());
             ad3.setYear(2021);
             ad3.setMileage(35000);
@@ -325,7 +325,7 @@ public class DataLoader {
             ad4.setDescription("Brand new Tesla Model 3 Long Range with Autopilot. Electric performance meets cutting-edge technology. Zero emissions, incredible acceleration.");
             ad4.setBrandId(brands.get(9).getId());
             ad4.setModelId(models.get(20).getId());
-            ad4.setBodyTypeId(bodyTypes.get(0).getId());
+            ad4.setBodyTypeId(bodyTypes.getFirst().getId());
             ad4.setCategoryId(categories.get(4).getId());
             ad4.setYear(2023);
             ad4.setMileage(5000);
@@ -347,12 +347,12 @@ public class DataLoader {
             // Ad 5: Mercedes E-Class
             VehicleAd ad5 = new VehicleAd();
             ad5.setOwnerId(owner1);
-            ad5.setStoreId(stores.get(0).getId());
+            ad5.setStoreId(stores.getFirst().getId());
             ad5.setTitle("2022 Mercedes-Benz E-Class E300 - Premium Luxury");
             ad5.setDescription("Elegant Mercedes E-Class with premium package. Immaculate condition with all maintenance records. Features advanced driver assistance and luxurious interior.");
             ad5.setBrandId(brands.get(3).getId());
             ad5.setModelId(models.get(16).getId());
-            ad5.setBodyTypeId(bodyTypes.get(0).getId());
+            ad5.setBodyTypeId(bodyTypes.getFirst().getId());
             ad5.setCategoryId(categories.get(5).getId());
             ad5.setYear(2022);
             ad5.setMileage(18000);
@@ -439,7 +439,7 @@ public class DataLoader {
             // User 1 likes ad 1 and ad 4
             VehicleAdLike like1 = new VehicleAdLike();
             like1.setUserId(user1);
-            like1.setAdId(ads.get(0).getId());
+            like1.setAdId(ads.getFirst().getId());
             likes.add(like1);
 
             VehicleAdLike like2 = new VehicleAdLike();
