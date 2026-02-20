@@ -76,8 +76,9 @@ public class VehicleModelService {
     public VehicleModel updateModel(Long id, VehicleModel updatedModel) {
         return vehicleModelRepository.findById(id)
                 .map(model -> {
-                    updatedModel.setId(id);
-                    return vehicleModelRepository.save(updatedModel);
+                    model.setName(updatedModel.getName());
+                    model.setBrandId(updatedModel.getBrandId());
+                    return vehicleModelRepository.save(model);
                 })
                 .orElseThrow(() -> new RuntimeException("Model not found with id: " + id));
     }
@@ -88,6 +89,9 @@ public class VehicleModelService {
      * @param id the model ID to delete
      */
     public void deleteModel(Long id) {
+        if (!vehicleModelRepository.existsById(id)) {
+            throw new RuntimeException("Model not found with id: " + id);
+        }
         vehicleModelRepository.deleteById(id);
     }
 

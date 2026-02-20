@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdCategoryRepository extends JpaRepository<AdCategory, Long> {
+    boolean existsByName(String name);
 }

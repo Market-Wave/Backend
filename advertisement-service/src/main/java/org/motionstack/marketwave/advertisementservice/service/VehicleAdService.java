@@ -86,12 +86,73 @@ public class VehicleAdService {
     public VehicleAd updateAd(Long id, VehicleAd updatedAd) {
         return vehicleAdRepository.findById(id)
                 .map(existingAd -> {
-                    updatedAd.setId(id);
-                    // Preserve owner if not provided in update
-                    if (updatedAd.getOwnerId() == null) {
-                        updatedAd.setOwnerId(existingAd.getOwnerId());
+                    if (updatedAd.getTitle() != null) {
+                        existingAd.setTitle(updatedAd.getTitle());
                     }
-                    return vehicleAdRepository.save(updatedAd);
+                    if (updatedAd.getDescription() != null) {
+                        existingAd.setDescription(updatedAd.getDescription());
+                    }
+                    if (updatedAd.getBrandId() != null) {
+                        existingAd.setBrandId(updatedAd.getBrandId());
+                    }
+                    if (updatedAd.getModelId() != null) {
+                        existingAd.setModelId(updatedAd.getModelId());
+                    }
+                    if (updatedAd.getBodyTypeId() != null) {
+                        existingAd.setBodyTypeId(updatedAd.getBodyTypeId());
+                    }
+                    if (updatedAd.getCategoryId() != null) {
+                        existingAd.setCategoryId(updatedAd.getCategoryId());
+                    }
+                    if (updatedAd.getYear() != null) {
+                        existingAd.setYear(updatedAd.getYear());
+                    }
+                    if (updatedAd.getMileage() != null) {
+                        existingAd.setMileage(updatedAd.getMileage());
+                    }
+                    if (updatedAd.getFuelType() != null) {
+                        existingAd.setFuelType(updatedAd.getFuelType());
+                    }
+                    if (updatedAd.getTransmission() != null) {
+                        existingAd.setTransmission(updatedAd.getTransmission());
+                    }
+                    if (updatedAd.getCondition() != null) {
+                        existingAd.setCondition(updatedAd.getCondition());
+                    }
+                    if (updatedAd.getPrice() != null) {
+                        existingAd.setPrice(updatedAd.getPrice());
+                    }
+                    if (updatedAd.getCurrency() != null) {
+                        existingAd.setCurrency(updatedAd.getCurrency());
+                    }
+                    if (updatedAd.getCountry() != null) {
+                        existingAd.setCountry(updatedAd.getCountry());
+                    }
+                    if (updatedAd.getCity() != null) {
+                        existingAd.setCity(updatedAd.getCity());
+                    }
+                    if (updatedAd.getLatitude() != null) {
+                        existingAd.setLatitude(updatedAd.getLatitude());
+                    }
+                    if (updatedAd.getLongitude() != null) {
+                        existingAd.setLongitude(updatedAd.getLongitude());
+                    }
+                    if (updatedAd.getAddress() != null) {
+                        existingAd.setAddress(updatedAd.getAddress());
+                    }
+                    if (updatedAd.getStatus() != null) {
+                        existingAd.setStatus(updatedAd.getStatus());
+                    }
+                    if (updatedAd.getStoreId() != null) {
+                        existingAd.setStoreId(updatedAd.getStoreId());
+                    }
+                    if (updatedAd.getIsBiddingEnabled() != null) {
+                        existingAd.setIsBiddingEnabled(updatedAd.getIsBiddingEnabled());
+                    }
+                    if (updatedAd.getIsPreorderEnabled() != null) {
+                        existingAd.setIsPreorderEnabled(updatedAd.getIsPreorderEnabled());
+                    }
+                    return vehicleAdRepository.save(existingAd);
                 })
                 .orElseThrow(() -> new RuntimeException("Vehicle ad not found with id: " + id));
     }
@@ -102,6 +163,9 @@ public class VehicleAdService {
      * @param id the vehicle ad ID to delete
      */
     public void deleteAd(Long id) {
+        if (!vehicleAdRepository.existsById(id)) {
+            throw new RuntimeException("Vehicle ad not found with id: " + id);
+        }
         vehicleAdRepository.deleteById(id);
     }
 

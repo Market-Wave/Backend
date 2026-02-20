@@ -63,8 +63,8 @@ public class AdCategoryService {
     public AdCategory updateCategory(Long id, AdCategory updatedCategory) {
         return adCategoryRepository.findById(id)
                 .map(category -> {
-                    updatedCategory.setId(id);
-                    return adCategoryRepository.save(updatedCategory);
+                    category.setName(updatedCategory.getName());
+                    return adCategoryRepository.save(category);
                 })
                 .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
     }
@@ -75,6 +75,9 @@ public class AdCategoryService {
      * @param id the category ID to delete
      */
     public void deleteCategory(Long id) {
+        if (!adCategoryRepository.existsById(id)) {
+            throw new RuntimeException("Category not found with id: " + id);
+        }
         adCategoryRepository.deleteById(id);
     }
 
@@ -87,5 +90,16 @@ public class AdCategoryService {
     @Transactional(readOnly = true)
     public boolean categoryExists(Long id) {
         return adCategoryRepository.existsById(id);
+    }
+
+    /**
+     * Check if a category name already exists.
+     *
+     * @param name the category name
+     * @return true if exists, false otherwise
+     */
+    @Transactional(readOnly = true)
+    public boolean categoryNameExists(String name) {
+        return adCategoryRepository.existsByName(name);
     }
 }

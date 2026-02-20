@@ -63,8 +63,8 @@ public class VehicleBrandService {
     public VehicleBrand updateBrand(Long id, VehicleBrand updatedBrand) {
         return vehicleBrandRepository.findById(id)
                 .map(brand -> {
-                    updatedBrand.setId(id);
-                    return vehicleBrandRepository.save(updatedBrand);
+                    brand.setName(updatedBrand.getName());
+                    return vehicleBrandRepository.save(brand);
                 })
                 .orElseThrow(() -> new RuntimeException("Brand not found with id: " + id));
     }
@@ -75,6 +75,9 @@ public class VehicleBrandService {
      * @param id the brand ID to delete
      */
     public void deleteBrand(Long id) {
+        if (!vehicleBrandRepository.existsById(id)) {
+            throw new RuntimeException("Brand not found with id: " + id);
+        }
         vehicleBrandRepository.deleteById(id);
     }
 
@@ -87,5 +90,16 @@ public class VehicleBrandService {
     @Transactional(readOnly = true)
     public boolean brandExists(Long id) {
         return vehicleBrandRepository.existsById(id);
+    }
+
+    /**
+     * Check if a brand name already exists.
+     *
+     * @param name the brand name
+     * @return true if exists, false otherwise
+     */
+    @Transactional(readOnly = true)
+    public boolean brandNameExists(String name) {
+        return vehicleBrandRepository.existsByName(name);
     }
 }

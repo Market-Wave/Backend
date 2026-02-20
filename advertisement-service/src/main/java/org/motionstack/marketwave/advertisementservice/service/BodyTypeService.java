@@ -63,8 +63,8 @@ public class BodyTypeService {
     public BodyType updateBodyType(Long id, BodyType updatedBodyType) {
         return bodyTypeRepository.findById(id)
                 .map(bodyType -> {
-                    updatedBodyType.setId(id);
-                    return bodyTypeRepository.save(updatedBodyType);
+                    bodyType.setName(updatedBodyType.getName());
+                    return bodyTypeRepository.save(bodyType);
                 })
                 .orElseThrow(() -> new RuntimeException("Body type not found with id: " + id));
     }
@@ -75,6 +75,9 @@ public class BodyTypeService {
      * @param id the body type ID to delete
      */
     public void deleteBodyType(Long id) {
+        if (!bodyTypeRepository.existsById(id)) {
+            throw new RuntimeException("Body type not found with id: " + id);
+        }
         bodyTypeRepository.deleteById(id);
     }
 
@@ -87,5 +90,16 @@ public class BodyTypeService {
     @Transactional(readOnly = true)
     public boolean bodyTypeExists(Long id) {
         return bodyTypeRepository.existsById(id);
+    }
+
+    /**
+     * Check if a body type name already exists.
+     *
+     * @param name the body type name
+     * @return true if exists, false otherwise
+     */
+    @Transactional(readOnly = true)
+    public boolean bodyTypeNameExists(String name) {
+        return bodyTypeRepository.existsByName(name);
     }
 }

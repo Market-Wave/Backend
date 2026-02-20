@@ -94,12 +94,34 @@ public class StoreService {
     public Store updateStore(Long id, Store updatedStore) {
         return storeRepository.findById(id)
                 .map(store -> {
-                    updatedStore.setId(id);
-                    // Preserve owner if not provided
-                    if (updatedStore.getOwnerId() == null) {
-                        updatedStore.setOwnerId(store.getOwnerId());
+                    if (updatedStore.getName() != null) {
+                        store.setName(updatedStore.getName());
                     }
-                    return storeRepository.save(updatedStore);
+                    if (updatedStore.getSlug() != null) {
+                        store.setSlug(updatedStore.getSlug());
+                    }
+                    if (updatedStore.getDescription() != null) {
+                        store.setDescription(updatedStore.getDescription());
+                    }
+                    if (updatedStore.getCountry() != null) {
+                        store.setCountry(updatedStore.getCountry());
+                    }
+                    if (updatedStore.getCity() != null) {
+                        store.setCity(updatedStore.getCity());
+                    }
+                    if (updatedStore.getLatitude() != null) {
+                        store.setLatitude(updatedStore.getLatitude());
+                    }
+                    if (updatedStore.getLongitude() != null) {
+                        store.setLongitude(updatedStore.getLongitude());
+                    }
+                    if (updatedStore.getAddress() != null) {
+                        store.setAddress(updatedStore.getAddress());
+                    }
+                    if (updatedStore.getStatus() != null) {
+                        store.setStatus(updatedStore.getStatus());
+                    }
+                    return storeRepository.save(store);
                 })
                 .orElseThrow(() -> new RuntimeException("Store not found with id: " + id));
     }
@@ -126,6 +148,9 @@ public class StoreService {
      * @param id the store ID to delete
      */
     public void deleteStore(Long id) {
+        if (!storeRepository.existsById(id)) {
+            throw new RuntimeException("Store not found with id: " + id);
+        }
         storeRepository.deleteById(id);
     }
 
@@ -138,5 +163,27 @@ public class StoreService {
     @Transactional(readOnly = true)
     public boolean storeExists(Long id) {
         return storeRepository.existsById(id);
+    }
+
+    /**
+     * Check if a store name already exists.
+     *
+     * @param name the store name
+     * @return true if exists, false otherwise
+     */
+    @Transactional(readOnly = true)
+    public boolean storeNameExists(String name) {
+        return storeRepository.existsByName(name);
+    }
+
+    /**
+     * Check if a store slug already exists.
+     *
+     * @param slug the store slug
+     * @return true if exists, false otherwise
+     */
+    @Transactional(readOnly = true)
+    public boolean storeSlugExists(String slug) {
+        return storeRepository.existsBySlug(slug);
     }
 }
